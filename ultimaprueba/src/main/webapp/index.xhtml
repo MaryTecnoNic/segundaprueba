@@ -1,0 +1,40 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Eso es!</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p:outputLabel value="#{sinSeguridad.hola}"></p:outputLabel>
+            <h:outputLabel for="nombre" value="Nombre:"/>
+            <p:inputText id="nombre" required="true" value="#{sinSeguridad.empleado.nombre}"/>
+
+            <h:outputLabel for="apellido" value="Apellido:"/>
+            <p:inputText id="apellido" required="true" value="#{sinSeguridad.empleado.apellido}"/>
+
+            <h:outputLabel for="sexo" value="Sexo:"/>
+            <p:selectOneRadio id="sexo" value="#{sinSeguridad.empleado.sexo}">
+                <f:selectItem itemLabel="Femenino" itemValue="f"/>
+                <f:selectItem itemLabel="Masculino" itemValue="m"/>
+            </p:selectOneRadio>
+
+            <p:commandButton value="Guardar" update="@form" styleClass="mt-3" action="#{sinSeguridad.guardar()}" />
+
+                        <p:dataTable id="empleado" var="empleado" value="#{sinSeguridad.empleadoList}" rowKey="#{empleado.idempleado}">
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{empleado.nombre}"/>
+                            </p:column>
+                            <p:column headerText="Apellido">
+                                <h:outputText value="#{empleado.apellido}"/>
+                            </p:column>
+                            <p:column headerText="Seco">
+                                <h:outputText value="#{empleado.sexo}"/>
+                            </p:column>
+                        </p:dataTable>
+
+
+        </h:form>
+    </h:body>
+</f:view>
